@@ -115,13 +115,13 @@ public struct JSON {
                 } else {
                     _type = .Number
                 }
-            case let string as! NSString:
+            case let string as NSString:
                 _type = .String
-            case let null as! NSNull:
+            case let null as NSNull:
                 _type = .Null
-            case let array as! [AnyObject]:
+            case let array as [AnyObject]:
                 _type = .Array
-            case let dictionary as! [String : AnyObject]:
+            case let dictionary as [String : AnyObject]:
                 _type = .Dictionary
             default:
                 _type = .Unknown
@@ -451,7 +451,7 @@ extension JSON: RawRepresentable {
         switch self.type {
         case .Array, .Dictionary:
             if let data = self.rawData(options: opt) {
-                return NSString(data: data, encoding: encoding)
+                return NSString(data: data, encoding: encoding) as! String?
             } else {
                 return nil
             }
